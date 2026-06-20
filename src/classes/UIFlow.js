@@ -958,7 +958,7 @@ export default class UIFlow {
 
       <!-- STEP 1: Name -->
       <div class="uif-screen" id="uif-s1">
-        <div class="uif-logo">THE WINNOWING</div>
+        <div class="uif-logo">TOZ</div>
         <div class="uif-sub">Combat Protocol v2.4</div>
         <div class="uif-steps">
           <div class="uif-step active" id="uif-dot1"></div>

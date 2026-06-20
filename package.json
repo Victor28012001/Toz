@@ -2,7 +2,7 @@
   "name": "the-winnowing-games-client",
   "version": "1.0.0",
   "type": "module",
-  "description": "The Winnowing Games - Multiplayer Shooter Client",
+  "description": "TOZ - Multiplayer Shooter Client",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

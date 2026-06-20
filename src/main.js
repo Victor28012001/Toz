@@ -164,7 +164,7 @@ class ConnectionManager {
   // }
 
   async getServerUrl() {
-    return "https://twg-server.onrender.com";
+    return "https://eloquence-overlay-kisser.ngrok-free.dev";
   }
 
   // async getServerUrl() {
