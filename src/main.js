@@ -173,11 +173,11 @@ class ConnectionManager {
 
   async getServerUrl() {
     // Use environment variable or fallback
-    if (import.meta.env.VITE_SERVER_URL_PROD) {
-      return import.meta.env.VITE_SERVER_URL || "https://twg-server.onrender.com";
-    }
+    // if (import.meta.env.VITE_SERVER_URL_PROD) {
+    //   return import.meta.env.VITE_SERVER_URL || "https://twg-server.onrender.com";
+    // }
     // Development
-    return "http://localhost:5000";
+    return "https://twg-server.onrender.com";
   }
 
   async connect() {
