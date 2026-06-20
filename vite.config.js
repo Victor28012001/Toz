@@ -181,7 +181,7 @@ export default defineConfig({
     minify: "terser",
     terserOptions: {
       compress: {
-        drop_console: true, // Remove console logs in production
+        drop_console: process.env.NODE_ENV === 'production',
         drop_debugger: true,
         pure_funcs: ["console.log"],
       },
@@ -193,17 +193,10 @@ export default defineConfig({
       },
       output: {
         manualChunks(id) {
-          // Group all three-related packages into one chunk
-          if (
-            id.includes("node_modules/three") ||
-            id.includes("node_modules/three-mesh-bvh")
-          ) {
+          if (id.includes("node_modules/three") || id.includes("node_modules/three-mesh-bvh")) {
             return "three-bundle";
           }
-          if (
-            id.includes("node_modules/socket.io-client") ||
-            id.includes("node_modules/engine.io-client")
-          ) {
+          if (id.includes("node_modules/socket.io-client") || id.includes("node_modules/engine.io-client")) {
             return "socket-bundle";
           }
           if (id.includes("node_modules/moment")) {
@@ -225,7 +218,7 @@ export default defineConfig({
     proxy: {
       "/auth-callback.html": {
         bypass: (req) => {
-          return "/auth-callback.html"; // serve the static file directly
+          return "/auth-callback.html";
         },
       },
       "/socket.io": {
@@ -290,11 +283,6 @@ export default defineConfig({
           });
         },
       },
-      '/api/dynamic': {
-        target: 'https://app.dynamicauth.com',
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api\/dynamic/, '')
-      },
     },
   },
   optimizeDeps: {
@@ -318,10 +306,12 @@ export default defineConfig({
       ],
     },
   },
-  // Handle Node.js modules in browser
   define: {
     global: "globalThis",
-    "process.env": {},
+    "process.env": {
+      NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development'),
+      VITE_SERVER_URL: JSON.stringify(process.env.VITE_SERVER_URL || 'https://twg-server.onrender.com'),
+    },
   },
   resolve: {
     alias: {

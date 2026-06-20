@@ -163,13 +163,22 @@ class ConnectionManager {
   //   return "https://serrulate-nonenviably-halina.ngrok-free.dev";
   // }
 
-  async getServerUrl() {
-    return "https://eloquence-overlay-kisser.ngrok-free.dev";
-  }
+  // async getServerUrl() {
+  //   return "https://eloquence-overlay-kisser.ngrok-free.dev";
+  // }
 
   // async getServerUrl() {
   //   return "http://localhost:5000";
   // }
+
+  async getServerUrl() {
+    // Use environment variable or fallback
+    if (import.meta.env.VITE_SERVER_URL_PROD) {
+      return import.meta.env.VITE_SERVER_URL || "https://twg-server.onrender.com";
+    }
+    // Development
+    return "http://localhost:5000";
+  }
 
   async connect() {
     const serverUrl = await this.getServerUrl();
@@ -182,6 +191,7 @@ class ConnectionManager {
       timeout: 20000,
       upgrade: true,
       rememberUpgrade: true,
+      path: '/socket.io',
     });
     return this.socket;
   }
