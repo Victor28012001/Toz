@@ -7,7 +7,8 @@ export default defineConfig({
   base: "/",
   build: {
     target: "es2020",
-    outDir: "../www",
+    outDir: "./dist",
+    // outDir: "../www",
     emptyOutDir: true,
     sourcemap: false,
     minify: "terser",
